@@ -30,10 +30,12 @@ dog_rect = dog.get_rect(center=(410, 220))
 owl = pygame.image.load('Image/owl.png')
 owl_rect = owl.get_rect(center=(210, 120))
 dialog = pygame.image.load('Image/dialog.png')
+# узнаем размеры картинки
+print(dialog.get_width(), dialog.get_height())
 dialog_rect = dialog.get_rect()
 dialog_cat_pos = (cat_rect.x, cat_rect.y - dialog_rect.h)
 dialog_owl_pos = (owl_rect.x, owl_rect.y - dialog_rect.h)
-dialog_dog_pos = (dog_rect.x - dialog_rect.w // 2, dog_rect.y - dialog_rect.h)
+dialog_dog_pos = (dog_rect.x, - dialog_rect.w // 2, dog_rect.y - dialog_rect.h)
 
 # разбираемся со шрифтами
 font = pygame.font.SysFont('Arial', 28, True, False)
@@ -43,11 +45,12 @@ font_box_rect = font_box.get_rect(center=(W // 2, H - 30))
 
 
 # рисуем диалоги
-def dialogs(text, pos, owl_text):
+def dialogs(text, pos, owl_text, owl_pos):
     screen.blit(dialog, pos)
     screen.blit(font2.render(text, True, BLACK), (pos[0] + 5, pos[1] + 5))
-    screen.blit(dialog, dialog_owl_pos)
-    screen.blit(font2.render(owl_text, True, BLACK), (dialog_owl_pos[0] + 5, dialog_owl_pos[1] + 5))
+    pygame.display.update()
+    screen.blit(dialog, owl_pos)
+    screen.blit(font2.render(owl_text, True, BLACK), owl_pos)
     pygame.display.update()
     pygame.time.wait(2000)
 
@@ -71,3 +74,11 @@ while run:
         screen.blit(font_box, font_box_rect)
         font_box.fill(SILVER)
     pygame.display.update()
+
+# пишем диалоги
+    if start == 1:
+        dialogs('', OUTSIZE_BG, dialog_owl_pos, 'я загадала число')
+        dialogs('', OUTSIZE_BG, dialog_owl_pos, 'от 0 до 100')
+        dialogs('', OUTSIZE_BG, dialog_owl_pos, 'угадай пжпж')
+        dialogs('кот твой ход', dialog_dog_pos, OUTSIZE_BG, '')
+        start = 0
