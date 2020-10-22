@@ -35,7 +35,7 @@ print(dialog.get_width(), dialog.get_height())
 dialog_rect = dialog.get_rect()
 dialog_cat_pos = (cat_rect.x, cat_rect.y - dialog_rect.h)
 dialog_owl_pos = (owl_rect.x, owl_rect.y - dialog_rect.h)
-dialog_dog_pos = (dog_rect.x, - dialog_rect.w // 2, dog_rect.y - dialog_rect.h)
+dialog_dog_pos = (dog_rect.x - dialog_rect.w // 2, dog_rect.y - dialog_rect.h)
 
 # разбираемся со шрифтами
 font = pygame.font.SysFont('Arial', 28, True, False)
